@@ -21,7 +21,7 @@ public class Main {
                             int menu = scanner.nextInt();
                             switch (menu) {
                                 case 0:
-                                    System.out.println("досвидания");
+                                    System.out.println("До свидания");
                                     break label41;
                                 case 1:
                                     add();
@@ -95,4 +95,5 @@ public class Main {
         String substr = InputUtils.askString("Введите строку, чтобы найти");
         taskService.findTask(substr);
     }
+
 }
