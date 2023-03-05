@@ -1,9 +1,9 @@
 package Task;
 
-public class DescriptionField extends Exception {
+public class IncorrectArgumentException extends Exception {
     private final String argument;
 
-    public DescriptionField(String argument) {
+    public IncorrectArgumentException(String argument) {
         this.argument = argument;
     }
 

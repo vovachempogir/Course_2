@@ -1,6 +1,7 @@
 package Task;
 
 import java.io.PrintStream;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -16,11 +17,23 @@ public class TaskService {
     public TaskService() {
     }
 
-    public void add(Repeatability taskPeriodicity) throws DescriptionField {
+    public void add(Repeatability taskPeriodicity) throws IncorrectArgumentException {
         Task tp = taskPeriodicity.createTask();
         tp.askData();
         this.taskMap.putIfAbsent(tp.getId(), tp);
         System.out.println("Задача создана: " + tp);
+    }
+
+    public void getAllByDate(LocalDate localDate) throws TaskNotFoundException {
+        for (Map.Entry<Integer, Task> taskMap : taskMap.entrySet()) {
+            LocalDate taskDate = taskMap.getValue().getDateTime().toLocalDate();
+            if (((LocalDate) taskDate).equals(localDate)) {
+                System.out.println(taskMap.getKey() + " " + taskMap.getValue());
+            }
+            else if (localDate.isAfter(taskDate) && taskMap.getValue().appearsIn(localDate)) {
+                System.out.println(taskMap.getKey() + " " + taskMap.getValue());
+            } else throw new TaskNotFoundException("На эту дату нет ни одной задачи ");
+        }
     }
 
     public void remove(int id) {

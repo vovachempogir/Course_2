@@ -1,9 +1,9 @@
 package Task;
 
 public enum Repeatability {
-    SINGLE {
+    ONETIME {
         public Task createTask() {
-            return new SingleTask();
+            return new OneTimeTask();
         }
     },
     DAILY {
