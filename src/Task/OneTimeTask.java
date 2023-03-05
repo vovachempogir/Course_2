@@ -2,8 +2,8 @@ package Task;
 
 import java.time.LocalDate;
 
-public class SingleTask extends Task {
-    public SingleTask() {
+public class OneTimeTask extends Task {
+    public OneTimeTask() {
     }
 
     public boolean appearsIn(LocalDate localDate) {

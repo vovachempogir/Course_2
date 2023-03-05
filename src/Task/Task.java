@@ -44,7 +44,7 @@ public abstract class Task {
         return String.format("id: %d, тип: %s, заголовок: %s, описание: %s, Дата и время: %s", this.id, this.type, this.title, this.description, InputUtils.dateTimeToString(this.dateTime));
     }
 
-    public void askData() throws DescriptionField {
+    public void askData() throws IncorrectArgumentException {
         System.out.println("выберите тип задачи:");
         Type[] var1 = Type.values();
         int var2 = var1.length;
@@ -61,10 +61,10 @@ public abstract class Task {
             if (this.description != null && !this.description.isBlank() && !this.description.isEmpty()) {
                 this.dateTime = InputUtils.askDateTime();
             } else {
-                throw new DescriptionField("Введите правильное описание");
+                throw new IncorrectArgumentException("Введите правильное описание");
             }
         } else {
-            throw new DescriptionField("Введите правильный заголовок");
+            throw new IncorrectArgumentException("Введите правильный заголовок");
         }
     }
 

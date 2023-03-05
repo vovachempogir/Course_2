@@ -27,12 +27,15 @@ public class Main {
                                     add();
                                     break;
                                 case 2:
-                                    remove();
+                                    getAllByDate();
                                     break;
                                 case 3:
-                                    listTaskMap();
+                                    remove();
                                     break;
                                 case 4:
+                                    listTaskMap();
+                                    break;
+                                case 5:
                                     findTask();
                                     break;
                                 default:
@@ -57,17 +60,17 @@ public class Main {
             scanner.close();
         } catch (TaskNotFoundException var6) {
             System.out.println(var6.getMessage());
-        } catch (DescriptionField var7) {
+        } catch (IncorrectArgumentException var7) {
             System.out.println(var7.getArgument());
         }
 
     }
 
     private static void printMenu() {
-        System.out.println("Доступные команды: \n 1. Добавить задачу \n 2. Удалить задачу  \n 3. Показать список задач \n 4. Найти задачу \n 0. Выход");
+        System.out.println("Доступные команды: \n 1. Добавить задачу \n 2. Получить задачи на день \n 3. Удалить задачу  \n 4. Показать список задач \n 5. Найти задачу \n 0. Выход");
     }
 
-    private static void add() throws DescriptionField {
+    private static void add() throws IncorrectArgumentException {
         System.out.println(" Выберите периодичность задачи: ");
         Repeatability[] var0 = Repeatability.values();
         int var1 = var0.length;
@@ -80,6 +83,11 @@ public class Main {
         String strPeriodicity = InputUtils.askString("Ваш выбор").toUpperCase();
         Repeatability repeatability = Repeatability.valueOf(strPeriodicity);
         taskService.add(repeatability);
+    }
+
+    private static void getAllByDate() throws TaskNotFoundException {
+        var date = InputUtils.askDate("Пожалуйста, введите дату");
+        taskService.getAllByDate(date);
     }
 
     private static void remove() throws TaskNotFoundException {

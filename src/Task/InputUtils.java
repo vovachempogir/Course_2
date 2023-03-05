@@ -1,6 +1,7 @@
 package Task;
 
 import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -9,6 +10,8 @@ public class InputUtils {
     public static final String DATE_TIME_FORMAT = "dd.MM.yyyy HH:mm";
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
     private static final Scanner scanner;
+    public static final String DATE_FORMAT = "dd.MM.yyyy";
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
     public InputUtils() {
     }
@@ -33,6 +36,12 @@ public class InputUtils {
                 System.out.println("введена дата в неверном формате");
             }
         }
+    }
+
+    public static LocalDate askDate(String message) {
+        System.out.print(message + " (" + DATE_FORMAT + "): ");
+        var strDate = scanner.next();
+        return LocalDate.parse(strDate, DATE_FORMATTER);
     }
 
     public static String dateTimeToString(LocalDateTime dateTime) {
